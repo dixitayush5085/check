@@ -27,8 +27,8 @@
     }
     .feedback-submit-button {
         display: flex;
-        justify-content: end;
-        align-items: end;
+        justify-content: flex-end;
+        align-items: flex-end;
         padding-right: 30px;
         height: 25%;
         button {
