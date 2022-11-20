@@ -10,6 +10,9 @@ pipeline {
           string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true) 
         }
       }
+      options {
+        timeout(time: 10, unit: 'SECONDS') 
+      }
       steps {
         echo "Good Morning, $FIRST_NAME"
         sh '''
