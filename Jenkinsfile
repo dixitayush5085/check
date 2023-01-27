@@ -1,10 +1,8 @@
 pipeline {
- agent {
-    docker { image 'node:latest' }
-  }
-  stages {
+ agent any
+ stages {
     stage('input') {
-      agent any
+      steps { sh 'npm install' }
       input {
         message "What is your first name?"
         ok "Submit"
