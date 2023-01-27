@@ -1,25 +1,20 @@
 pipeline {
- agent any
- stages {
-    stage('input') {
+  agent any
+  stages {
+    stage('Install') {
       steps { sh 'npm install' }
-      input {
-        message "What is your first name?"
-        ok "Submit"
-        parameters {
-          string(defaultValue: 'Dave', name: 'FIRST_NAME', trim: true) 
+    }
+
+    stage('Test') {
+      parallel {
+        stage('Unit tests') {
+            steps { sh 'npm run-script test' }
         }
       }
-      options {
-        timeout(time: 30, unit: 'SECONDS') 
-      }
-      steps {
-        echo "Good Morning, $FIRST_NAME"
-        sh '''
-          hostname
-          cat /etc/redhat-release
-        '''
-      }
+    }
+
+    stage('Build') {
+      steps { sh 'npm run-script build' }
     }
   }
 }
