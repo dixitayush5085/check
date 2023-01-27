@@ -1,5 +1,7 @@
 pipeline {
-  agent none
+ agent {
+    docker { image 'node:latest' }
+  }
   stages {
     stage('input') {
       agent any
